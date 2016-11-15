@@ -1,0 +1,79 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  padding: 0px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.my_label{
+  display: block;
+  text-align: center;
+  line-height:150%;
+  font-size: 1.1em;
+}
+
+/*----- Tabs -----*/
+.tabs {
+  width:100%;
+  border: 1px solid #ddd;
+}
+
+/*----- Tab Links -----*/
+/* Clearfix */
+.tab-links:after {
+  display:block;
+  clear:both;
+  content:'';
+  border: 1px solid #ddd;
+}
+
+.tab-links li {
+  margin:0px 0px;
+  float:left;
+  list-style: none;
+  width: 50%;
+}
+
+.tab-links a {
+  padding:14px 15px;
+  display:block;
+  background:#fff;
+  font-size:20px;
+  font-weight:600;
+  color:#4c4c4c;
+  text-align: center;
+  transition:all linear 0.15s;
+}
+
+.tab-links a:hover {
+  background:#a7cce5;
+  text-decoration:none;
+}
+
+li.active a, li.active a:hover {
+  background:#7FB5DA;
+  color:#4c4c4c;
+}
+
+/*----- Content of Tabs -----*/
+.tab-content {
+  padding:15px;
+  border-radius:3px;
+  box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
+  background:#fff;
+}
+
+.tab {
+  display:none;
+}
+
+.tab.active {
+  display:block;
+}

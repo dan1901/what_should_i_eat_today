@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/app.css"/>
+
+    <!-- Vendor CSS -->
+    <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+    <link href="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
+    <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+
+  </head>
+  <body>
+  <a href="/">
+  <h1 style="font-size: 50px;color: #20373d;text-align: center;line-height:150%; margin:20px 0 20px 0"><%= title %></h1>
+  </a>
+  <h4 style="font-size: 20px;color: #20373d;text-align: center; margin:20px 0 20px 0">현재 등록된 가구 수 :  <%= total_count %></h4>
+  <div class = "tabs">
+    <ul class="tab-links">
+      <li class="active"><a href="#find"><%= tab1 %></a></li>
+      <li><a href="#add"><%= tab2 %></a></li>
+    </ul>
+    <div class="tab-content">
+      <div id="find" class="tab active">
+        <div class="card">
+          <div class="card-header">
+            <h3 style="text-align: center"><%= tab1 %></h3>
+          </div>
+          <div class="card-body card-padding" style="padding-bottom: 100px;">
+            <form id="search" style="padding-left: 5%; padding-right: 5%;">
+              <div class="form-group" style="float: left; width: 10%; margin-right: 15px;">
+                <div class="fg-line">
+                  <label for="category" class="my_label">카테고리</label>
+                  <div class="select" >
+                    <select class="form-control" id="category">
+                      <option value="desk">책상</option>
+                      <option value="sofa">소파</option>
+                      <option value="bookshelf">책장</option>
+                      <option value="table">테이블</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group" style="float: left; width: 18%; margin-right:15px;">
+                <div class="fg-line">
+                  <label for="article_name" class="my_label">상품이름</label>
+                  <input type="text" id="article_name" class="form-control" placeholder="상품이름" style="text-align: center">
+                </div>
+              </div>
+              <div class="form-group" style="float: left; width: 18%; margin-right: 15px;">
+                <div class="fg-line">
+                  <label for="article_width" class="my_label">가로</label>
+                  <input type="number" onkeypress="return digit_check(event)" id="article_width" class="form-control" placeholder="가로" style="text-align: center">
+                </div>
+              </div>
+              <div class="form-group" style="float: left;width: 18%; margin-right: 15px;">
+                <div class="fg-line">
+                  <label for="article_height_length" class="my_label">세로</label>
+                  <input type="number" onkeypress="return digit_check(event)" id="article_height_length" class="form-control" placeholder="세로" style="text-align: center">
+                </div>
+              </div>
+              <div class="form-group" style="float: left; width: 18%; margin-right: 15px; ">
+                <div class="fg-line">
+                  <label for="article_height" class="my_label">높이</label>
+                  <input type="number" onkeypress="return digit_check(event)" id="article_height" class="form-control" placeholder="높이" style="text-align: center">
+                </div>
+              </div>
+              <div class="form-group" style="float: left; width: 10%; margin-right: 15px; ">
+                <div class="fg-line">
+                  <button type="button" onclick="return searchBTN()" class="btn btn-default btn-icon-text" style="margin-top: 10%"><i class="zmdi zmdi-search"></i> Search</button>
+                </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+      </div>
+      <div id="add" class="tab">
+        <div class="card">
+          <div class="card-header">
+            <h3 style="text-align: center"><%= tab2 %></h3>
+          </div>
+          <div class="card-body card-padding" style="padding-bottom: 100px;">
+            <form role="form" id="add" style="padding-left: 5%; padding-right: 5%;">
+              <div class="form-group fg-line" style="float: left;width: 5%; margin-right: 15px;">
+                  <label for="in_category" class="my_label">카테고리</label>
+                  <div class="select" >
+                    <select class="form-control" id="in_category">
+                      <option value="desk">책상</option>
+                      <option value="sofa">소파</option>
+                      <option value="bookshelf">책장</option>
+                      <option value="table">테이블</option>
+                    </select>
+                  </div>
+              </div>
+              <div class="form-group fg-line" style="float: left;width: 10%; margin-right: 15px;">
+                  <label for="in_article_name" class="my_label">상품이름</label>
+                  <input id="in_article_name" class="form-control" type="text" placeholder="상품이름" style="text-align: center;">
+              </div>
+              <div class="form-group fg-line" style="float: left;width: 10%; margin-right: 15px;">
+                <label for="in_article_width" class="my_label">가로(mm)</label>
+                <input id="in_article_width"  onkeypress="return digit_check(event)" class="form-control" type="number" placeholder="가로" style="text-align: center;">
+              </div>
+              <div class="form-group fg-line" style="float: left;width: 10%; margin-right: 15px;">
+                <label for="in_article_height_length" class="my_label">세로(mm)</label>
+                <input id="in_article_height_length"  onkeypress="return digit_check(event)" class="form-control" type="number" placeholder="세로" style="text-align: center;">
+              </div>
+              <div class="form-group fg-line" style="float: left;width: 10%; margin-right: 15px;">
+                <label for="in_article_height" class="my_label">높이(mm)</label>
+                <input id="in_article_height"  onkeypress="return digit_check(event)" class="form-control" type="number" placeholder="높이" style="text-align: center;">
+              </div>
+              <div class="form-group fg-line" style="float: left;width: 5%; margin-right: 15px;">
+                <label for="in_article_price" class="my_label">가격(원)</label>
+                <input id="in_article_price"  onkeypress="return digit_check(event)" class="form-control" type="number" placeholder="가격" style="text-align: center;">
+              </div>
+              <div class="form-group fg-line" style="float: left;width: 17%; margin-right: 15px;">
+                <label for="in_article_image" class="my_label">이미지주소</label>
+                <input id="in_article_image" class="form-control" type="url" placeholder="http://aaa.cc/image.jpg" style="text-align: center;">
+              </div>
+              <div class="form-group fg-line" style="float: left;width: 17%; margin-right: 15px;">
+                <label for="in_article_url" class="my_label">링크</label>
+                <input id="in_article_url" class="form-control" type="url" placeholder="http://gagushop.co.kr/articlecode" style="text-align: center;">
+              </div>
+              <div class="form-group fg-line" style="float: left;width: 5%; ">
+                <button type="button" onclick="addBTN()" class="btn btn-default btn-icon-text" style="margin-top: 30%;"><i class="zmdi zmdi-plus-circle-o"></i> 추가</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% include footer.ejs %>
+  <script type="text/javascript">
+    $("#pagination").twbsPagination({
+      totalPages: <%-page_count%>,
+      visiblePages: 5,
+      href: '?page={{number}}'
+//        onPageClick: function (event, page) {
+//          alert('click'+page);
+//        }
+    });
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="javascripts/tab.js"></script>
+  <script src="javascripts/functions.js"></script>
+  <!--<script src="/javascripts/demo.js"></script>-->
+  <!-- Javascript Libraries -->
+  <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="vendors/bower_components/autosize/dist/autosize.min.js"></script>
+  <script src="vendors/bower_components/jquery.nicescroll/jquery.nicescroll.min.js"></script>
+  <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+  <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+  <script src="/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
+
+  </body>
+</html>
