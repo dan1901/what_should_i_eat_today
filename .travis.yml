@@ -1,6 +1,6 @@
 sudo: required
 # .travis.yml
-lanuage: node_js
+language: node_js
 node_js:
     - 6
     - 6.1
